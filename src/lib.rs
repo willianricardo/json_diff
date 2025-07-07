@@ -72,7 +72,7 @@ fn compare(delta: &mut Delta, path: String, a: &Value, b: &Value) {
                 let new_path = if path.is_empty() {
                     key.clone()
                 } else {
-                    format!("{}.{}", path, key)
+                    format!("{path}.{key}")
                 };
 
                 match (obj_a.get(key), obj_b.get(key)) {
@@ -150,6 +150,8 @@ fn set_value(root: &mut Value, path: &str, value: Option<Value>) {
 
 #[cfg(test)]
 mod tests {
+    use std::f64::consts::{E, PI};
+
     use super::*;
     use serde_json::{Value, json};
 
@@ -441,8 +443,8 @@ mod tests {
 
     #[test]
     fn positive_negative_zero_numbers() {
-        let before = json!({"a": 0, "b": -5, "c": 3.14});
-        let after = json!({"a": 1, "b": 0, "c": -3.14});
+        let before = json!({"a": 0, "b": -5, "c": PI});
+        let after = json!({"a": 1, "b": 0, "c": -PI});
         let delta: Delta = diff(&before, &after);
 
         let mut expected = Delta::new();
@@ -463,8 +465,8 @@ mod tests {
         expected.insert(
             "c".to_string(),
             Change::Modify {
-                old: json!(3.14),
-                new: json!(-3.14),
+                old: json!(PI),
+                new: json!(-PI),
             },
         );
         assert_eq!(delta, expected);
@@ -768,8 +770,8 @@ mod tests {
 
     #[test]
     fn large_numbers_and_precision() {
-        let before = json!({"big": 9223372036854775807i64, "float": 3.141592653589793});
-        let after = json!({"big": -9223372036854775808i64, "float": 2.718281828459045});
+        let before = json!({"big": 9223372036854775807i64, "float": PI});
+        let after = json!({"big": -9223372036854775808i64, "float": E});
         let delta: Delta = diff(&before, &after);
 
         let mut expected = Delta::new();
@@ -783,8 +785,8 @@ mod tests {
         expected.insert(
             "float".to_string(),
             Change::Modify {
-                old: json!(3.141592653589793),
-                new: json!(2.718281828459045),
+                old: json!(PI),
+                new: json!(E),
             },
         );
         assert_eq!(delta, expected);
@@ -974,8 +976,8 @@ mod tests {
         let mut after_map = serde_json::Map::new();
 
         for i in 0..100 {
-            before_map.insert(format!("key_{}", i), json!({"value": i}));
-            after_map.insert(format!("key_{}", i), json!({"value": i + 100}));
+            before_map.insert(format!("key_{i}"), json!({"value": i}));
+            after_map.insert(format!("key_{i}"), json!({"value": i + 100}));
         }
 
         let before = Value::Object(before_map);
