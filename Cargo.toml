@@ -1,0 +1,21 @@
+[package]
+name = "json_diff"
+version = "0.1.0"
+authors = ["Willian Ricardo <willianricardo.dev@gmail.com>"]
+edition = "2024"
+description = "Lightweight JSON diffing library for computing, applying, and reverting JSON deltas."
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/willianricardo/json_diff"
+keywords = ["json", "diff", "serde", "serde_json"]
+categories = ["development-tools", "data-structures"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[features]
+default = []
+
+[badges]
+travis-ci = { repository = "willianricardo/json_diff" }
