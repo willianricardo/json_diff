@@ -3,11 +3,12 @@ json_diff
 A lightweight Rust library for computing and applying JSON diffs. It allows you to compare two JSON Values, generate a delta representing the changes, apply those changes to an original JSON, and revert them if needed.
 
 🚀 Features
-	•	Compute Differences: Compare two serde_json::Value instances and produce a Delta mapping JSON paths to changes.
-	•	Change Types: Support for Add, Remove, and Modify operations.
-	•	Apply Deltas: Apply a computed delta to an original JSON object to obtain the modified version.
-	•	Revert Changes: Revert applied deltas to return to the original JSON state.
-	•	Ordered Keys: Uses BTreeMap to keep keys in the delta sorted for consistent output.
+- **Compute Differences**: Efficiently compare two `serde_json::Value` instances to identify changes.
+- **Change Types**: Supports three types of changes: Add, Remove, and Modify.
+- **Apply Deltas**: Apply computed deltas to an original JSON object to obtain the modified version.
+- **Revert Changes**: Revert applied deltas to return to the original JSON state.
+- **Ordered Keys**: Uses `BTreeMap` to keep keys in the delta sorted for consistent output.
+- **Serde Integration**: Built on top of `serde_json`, making it easy to work with JSON data in Rust.
 
 📦 Installation
 
@@ -99,11 +100,11 @@ Revert a delta on a JSON value, returning the previous state.
 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
-	1.	Fork the repository
-	2.	Create your feature branch (git checkout -b feature/YourFeature)
-	3.	Commit your changes (git commit -m 'Add some feature')
-	4.	Push to the branch (git push origin feature/YourFeature)
-	5.	Open a Pull Request
+- Fork the repository
+- Create your feature branch (git checkout -b feature/YourFeature)
+- Commit your changes (git commit -m 'Add some feature')
+- Push to the branch (git push origin feature/YourFeature)
+- Open a Pull Request
 
 Please ensure your code adheres to Rust’s formatting conventions (e.g., rustfmt).
 
