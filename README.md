@@ -67,9 +67,9 @@ pub enum Change {
 ```
 
 Represents a single change in the JSON structure.
-	•	Add(value): A value was added at the given path.
-	•	Remove(value): A value was removed from the given path.
-	•	Modify { old, new }: A value was changed from old to new.
+-	Add(value): A value was added at the given path.
+-	Remove(value): A value was removed from the given path.
+-	Modify { old, new }: A value was changed from old to new.
 
 type Delta
 
