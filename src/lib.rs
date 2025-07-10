@@ -22,11 +22,12 @@
 //! assert_eq!(reverted, before);
 //! ```
 
+use serde::{Deserialize, Serialize};
 use serde_json::{Map, Value};
 use std::collections::{BTreeMap, HashSet};
 
 /// Represents a single JSON change.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum Change {
     /// A value was added at the specified path.
     Add(Value),
